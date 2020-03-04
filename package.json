@@ -1,0 +1,24 @@
+{
+  "name": "new-restaurant",
+  "version": "1.0.0",
+  "description": "Mini project to create a restaurant",
+  "main": "express.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node express.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndresLong01/new-restaurant.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndresLong01/new-restaurant/issues"
+  },
+  "homepage": "https://github.com/AndresLong01/new-restaurant#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
