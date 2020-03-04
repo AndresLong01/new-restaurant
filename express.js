@@ -19,6 +19,18 @@ app.post("/reserve", function(req, res){
     res.json(newReservation);
 });
 
-app.listen(PORT, function(){
-     console.log("I'm alive!");
-})
+app.get("/tables", function(req, res) {
+    res.sendFile(path.join(__dirname, "table.html"));
+});
+app.get("/reserve", function(req, res) {
+    res.sendFile(path.join(__dirname, "reserve.html"));
+});
+app.get("/api/tables", function(req, res) {
+    return res.json(array1);
+});
+app.get("/api/wait", function(req, res) {
+    return res.json(array1);
+});
+ app.listen(PORT, function(){
+     console.log("I'm alive on port " + PORT)
+ });
