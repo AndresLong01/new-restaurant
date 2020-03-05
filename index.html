@@ -48,8 +48,31 @@
     </div>
 
     <script>
+        let tablesReserved = 0;
+        $("#reserve").on("click", function(e){
+            e.preventDefault();
+            let newReservation = {
+                customerName: $("#name").val().trim(),
+                phoneNumber: $("#phone").val().trim(),
+                customerEmail: $("#email").val().trim(),
+                customerID: $("#id").val().trim()
+            };
 
-        ajax
+            if (tablesReserved < 5) {
+                $.post("/reserve", newReservation)
+                    .then(function(data){
+                        console.log("We have added a reservation", data);
+                        alert("A reservation has been made, Thanks Nerd.");
+                        tablesReserved++;
+                    });
+            }else {
+                $.post("/reserve", newWaitlist)
+                    .then(function (data){
+                        console.log("We have added a waitlist entry", data);
+                        alert("No tables available at this point in time, Try again later")
+                    });
+            }
+        });
 
     </script>
 </body>
