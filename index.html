@@ -47,9 +47,29 @@
 
     </div>
 
-    <script>
+    <script type="text/javascript">
+        $(document).ready(() => {
+            $.get("/api/tables", function(data) {
+                console.log(data);
+                if (data) {
+                    for (var i = 0; i < data.length; i++) {
+                    $("#currentReserve").show();
+                    $("#tableNum").text(data.tableNum);
+                    $("#id").text(data.id);
+                    $("#name").text(data.name);
+                    $("#email").text(data.email);
+                    $("#phone").text(data.phone);
+                    }
+                
+                } else {
+                    $("").text(
+                        "Your table is not ready yet.");
+                    $("#").hide();
+                }
+            });
+        });
 
-        ajax
+
 
     </script>
 </body>
