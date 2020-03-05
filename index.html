@@ -24,11 +24,11 @@
 
 
                         <div class="jumbotron">
-                            <h1 class="display-4"><i class="fas fa-fire"></i>  Hot Restaurant</h1>
+                            <h1 class="display-4 font-weight-bold"><i class="fas fa-fire"></i>  Hot Restaurant</h1>
                             <hr class="my-4">
-                            <h3 class="openTables"></h3>
+                            <h3>We only have 5 tables! Book your seat before they all are gone!</h3>
                             <a class="btn btn-primary btn-lg" href="#" role="button"><i class="fas fa-table"></i>  View Tables</a>
-                            <a class="btn btn-primary btn-lg" href="#" role="button"><i class="fas fa-window-maximize"></i>  Make Reservations</a>
+                            <a class="btn btn-danger btn-lg" href="#" role="button"><i class="fas fa-window-maximize"></i>  Make Reservations</a>
                         </div>
                     </div>
 
@@ -46,57 +46,7 @@
         </div>
 
     </div>
-    <script type="text/javascript">
-        let tablesReserved = 0;
-        $("#reserve").on("click", function(e){
-            e.preventDefault();
-            let newReservation = {
-                customerName: $("#name").val().trim(),
-                phoneNumber: $("#phone").val().trim(),
-                customerEmail: $("#email").val().trim(),
-                customerID: $("#id").val().trim()
-            };
-
-            if (tablesReserved < 5) {
-                $.post("/reserve", newReservation)
-                    .then(function(data){
-                        console.log("We have added a reservation", data);
-                        alert("A reservation has been made, Thanks Nerd.");
-                        tablesReserved++;
-                    });
-            }else {
-                $.post("/reserve", newWaitlist)
-                    .then(function (data){
-                        console.log("We have added a waitlist entry", data);
-                        alert("No tables available at this point in time, Try again later")
-                    });
-            }
-        });
-        
-        $(document).ready(() => {
-            $.get("/api/tables", function(data) {
-                console.log(data);
-                if (data) {
-                    for (var i = 0; i < data.length; i++) {
-                    $("#currentReserve").show();
-                    $("#tableNum").text(data.tableNum);
-                    $("#id").text(data.id);
-                    $("#name").text(data.name);
-                    $("#email").text(data.email);
-                    $("#phone").text(data.phone);
-                    }
-                
-                } else {
-                    $("").text(
-                        "Your table is not ready yet.");
-                    $("#").hide();
-                }
-            });
-        });
-
-
-
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 
 </html>

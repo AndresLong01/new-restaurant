@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/02ef1ec5c6.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-10 offset-1">
+
+                <div class="row">
+
+                    <div class="col">
+
+
+                        <div class="jumbotron">
+                            <h1 class="display-4  font-weight-bold"><i class="fas fa-fire"></i> Hot Restaurant</h1>
+                            <hr class="my-4">
+                            <h3>Make your reservation</h3>
+                            <a class="btn btn-primary btn-lg" href="#" role="button"><i class="fas fa-table"></i> View
+                                Tables</a>
+                            <a class="btn btn-white btn-lg" href="#" role="button"><i class="fas fa-home"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-12 border">
+                        <div class="row border-bottom bg-light">
+                            <div class="col-12 p-2">
+
+                                <h4>Table Reservation</h4>
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 p-4">
+
+                                
+                                <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <input type="email" class="form-control" id="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Phone Number</label>
+                                    <input type="password" class="form-control" id="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Email</label>
+                                    <input type="password" class="form-control" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Unique ID</label>
+                                    <input type="password" class="form-control" id="id">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary" id="reserve">Confirm Reservation</button>
+                            </form>
+                        </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <a href="#">API Table Link</a>
+                    <p>|</p><a href="#">API Wait List</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        let tablesReserved = 0;
+        $("#reserve").on("click", function(e){
+            e.preventDefault();
+            let newReservation = {
+                customerName: $("#name").val().trim(),
+                phoneNumber: $("#phone").val().trim(),
+                customerEmail: $("#email").val().trim(),
+                customerID: $("#id").val().trim()
+            };
+
+            if (tablesReserved < 5) {
+                $.post("/reserve", newReservation)
+                    .then(function(data){
+                        console.log("We have added a reservation", data);
+                        alert("A reservation has been made, Thanks Nerd.");
+                        tablesReserved++;
+                    });
+            }else {
+                $.post("/reserve", newWaitlist)
+                    .then(function (data){
+                        console.log("We have added a waitlist entry", data);
+                        alert("No tables available at this point in time, Try again later")
+                    });
+            }
+        });
+    </script>
+</body>
+
+</html>
