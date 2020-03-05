@@ -15,13 +15,13 @@ app.get("/", function(req, res) {
 
 app.post("/reserve", function(req, res){
     let newReservation = req.body;
-    let newWaitlist = req.body;
-    if (array1.length <= 5){
+
+    if (array1.length <= 4){
         array1.push(newReservation);
         res.json(newReservation);
     } else {
-        array2.push(newWaitlist);
-        res.json(newWaitlist);
+        array2.push(newReservation);
+        res.json(newReservation);
     }
 });
 

@@ -87,7 +87,6 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
-        let tablesReserved = 0;
         $("#reserve").on("click", function(e){
             e.preventDefault();
             let newReservation = {
@@ -97,20 +96,11 @@
                 customerID: $("#id").val().trim()
             };
 
-            if (tablesReserved < 5) {
-                $.post("/reserve", newReservation)
-                    .then(function(data){
-                        console.log("We have added a reservation", data);
-                        alert("A reservation has been made, Thanks Nerd.");
-                        tablesReserved++;
-                    });
-            }else {
-                $.post("/reserve", newWaitlist)
-                    .then(function (data){
-                        console.log("We have added a waitlist entry", data);
-                        alert("No tables available at this point in time, Try again later")
-                    });
-            }
+            $.post("/reserve", newReservation)
+                .then(function(data){
+                    console.log("We have added a reservation", data);
+                    alert("A reservation has been made, Thanks Nerd.");
+                });
         });
     </script>
 </body>
